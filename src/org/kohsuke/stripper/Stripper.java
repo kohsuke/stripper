@@ -74,6 +74,12 @@ public class Stripper {
             super(cv);
         }
 
+        public void visit(int version, int access, String name, String superName, String[] interfaces, String sourceFile) {
+            if(skip.contains(Info.SourceFile))
+                sourceFile = null;
+            super.visit(version, access, name, superName, interfaces, sourceFile);
+        }
+
         public void visitAttribute(Attribute attr) {
             if(!filtered(attr))
                 super.visitAttribute(attr);
