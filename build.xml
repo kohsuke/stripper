@@ -18,6 +18,7 @@
    </target>
    
    <target name="jar" depends="compile">
+     <tstamp />
      <jar destfile="build/stripper.jar">
        <fileset dir="build/classes"/>
        <zipgroupfileset dir="lib" includes="asm-*.jar" />
@@ -25,8 +26,22 @@
        <metainf dir="." includes="LICENSE.txt" />
        <manifest>
          <attribute name="Main-Class" value="org.kohsuke.stripper.Main" />
+         <attribute name="Build-Date" value="${DSTAMP}" />
        </manifest>
      </jar>
    </target>
+   
+  <target name="test" depends="jar">
+    <!-- test stripping -->
+    <taskdef name="stripper" classname="org.kohsuke.stripper.StripperTask">
+      <classpath>
+        <pathelement path="build/stripper.jar"/>
+      </classpath>
+    </taskdef>
+    
+    <stripper remove="compilerInfo basicDebugInfo">
+      <source dir="build/classes" includes="**/*.class" />
+    </stripper>
+  </target>
 </project>
 
