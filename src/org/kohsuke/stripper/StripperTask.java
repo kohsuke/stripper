@@ -69,6 +69,6 @@ public class StripperTask extends Task {
         }
 
         log(String.format(
-            "Stripped %d->%d (%d%%)\n",beforeTotal,afterTotal,(afterTotal*100)/beforeTotal), Project.MSG_INFO);
+            "Total stripped %d->%d (%d%%)\n",beforeTotal,afterTotal,(afterTotal*100)/beforeTotal), Project.MSG_INFO);
     }
 }
