@@ -15,4 +15,8 @@ public class Test {
         y.add(x);
         return;
     }
+
+    public static void main(String[] args) {
+        throw new Error();
+    }
 }
