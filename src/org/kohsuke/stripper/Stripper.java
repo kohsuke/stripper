@@ -80,6 +80,12 @@ public class Stripper {
             super.visit(version, access, name, superName, interfaces, sourceFile);
         }
 
+        public void visitInnerClass(String name, String outerName, String innerName, int access) {
+            if(skip.contains(Info.InnerClasses))
+                return;
+            super.visitInnerClass(name, outerName, innerName, access);
+        }
+
         public void visitAttribute(Attribute attr) {
             if(!filtered(attr))
                 super.visitAttribute(attr);
